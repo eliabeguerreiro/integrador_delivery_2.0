@@ -1,0 +1,230 @@
+-- VIEW PARA PRODUTOS 
+WITH TesteContador(contador)
+AS
+(
+SELECT 0 AS contador
+UNION ALL
+SELECT contador + 1 AS contador FROM TesteContador
+WHERE contador < 200000
+)
+
+
+SELECT 
+	B.CD_PROD AS sku,
+	D.CD_MC as codigo_marca,
+	D.DS_PROD AS nome,
+	A.CD_BARRA AS gtin,
+	0 AS conteudo,
+	'UN' AS unidade_conteudo,
+	'UN' AS unidade_venda,
+	'P' AS tipo_produto,
+	B.DT_CAD AS data_inclusao,
+	B.DT_ULT_ATU AS data_alteracao
+
+FROM
+	TesteContador cont,
+	EST_PROD C,
+	EST_PROD_CPL B 
+	INNER JOIN
+	EST_PROD_CD_BARRA A 
+	ON B.CD_PROD = A.CD_PROD 
+	INNER JOIN
+	V_EST_PROD_ARV_MERCADOLOGICA D
+	ON D.CD_PROD = A.CD_PROD
+
+WHERE  
+	C.STS_PROD = 0 and
+	C.CD_PROD = cont.contador and
+	B.CD_PROD = cont.contador and
+	B.CD_FILIAL = 66 and
+	A.CD_BARRA = (SELECT MAX(CD_BARRA) FROM EST_PROD_CD_BARRA WHERE CD_PROD = cont.contador)
+
+UNION ALL
+
+SELECT 
+	B.CD_PROD AS sku,
+	D.CD_MC as codigo_marca,
+	D.DS_PROD AS nome,
+	A.CD_BARRA AS gtin,
+	0 AS conteudo,
+	'UN' AS unidade_conteudo,
+	'UN' AS unidade_venda,
+	'P' AS tipo_produto,
+	B.DT_CAD AS data_inclusao,
+	B.DT_ULT_ATU AS data_alteracao
+
+FROM
+	TesteContador cont,
+	EST_PROD C,
+	EST_PROD_CPL B 
+	INNER JOIN
+	EST_PROD_CD_BARRA A 
+	ON B.CD_PROD = A.CD_PROD 
+	INNER JOIN
+	V_EST_PROD_ARV_MERCADOLOGICA D
+	ON D.CD_PROD = A.CD_PROD
+
+WHERE  
+	C.STS_PROD = 0 and
+	C.CD_PROD = cont.contador and
+	B.CD_PROD = cont.contador and
+	B.CD_FILIAL = 57 and
+	A.CD_BARRA = (SELECT MAX(CD_BARRA) FROM EST_PROD_CD_BARRA WHERE CD_PROD = cont.contador)
+
+
+		
+OPTION (maxrecursion 0)
+
+
+
+
+================================================================================================================
+--VIEW LOJAs
+ 
+SELECT * from LOJAS_RAPPI
+	
+	
+	
+=================================================================================================================
+-- VIEW MARCAS
+ 	
+
+SELECT DISTINCT 
+	A.CD_MC AS  codigo,
+	A.DS_MC AS nome,
+	A.DT_CAD AS data_inclusao,
+	GETDATE() AS data_alteracao
+
+FROM 
+	V_EST_PROD_ARV_MERCADOLOGICA A 
+
+WHERE 
+	A.CD_MC !=0 and
+	A.DT_CAD = (SELECT MAX(DT_CAD) FROM V_EST_PROD_ARV_MERCADOLOGICA WHERE CD_MC = A.CD_MC) 
+	
+ORDER BY 
+CD_MC ASC
+	
+OPTION (maxrecursion 0)
+	
+=====================================================================================================================
+-- VIEW produto_loja
+WITH TesteContador(contador)
+AS
+(
+SELECT 0 AS contador
+UNION ALL
+SELECT contador + 1 AS contador FROM TesteContador
+WHERE contador < 200000
+)
+ 
+
+SELECT 
+	A.CD_FILIAL AS codigo_loja,
+	A.CD_PROD AS sku,
+	A.VLR_OFERTA AS preco_promocional, 
+	A.VLR_TABELA AS preco_normal,
+	A.VLR_OFERTA, CASE WHEN A.VLR_OFERTA!=0 THEN 1 ELSE 0 END AS promocao,
+	A.DT_CAD AS data_inclusao,
+	A.DT_CAD AS data_alteracao
+
+FROM
+	EST_PROD_PRECO A,
+	TesteContador cont
+	
+WHERE  
+	A.CD_PROD = cont.contador and
+	A.CD_FILIAL = 57 
+UNION ALL
+SELECT 
+	A.CD_FILIAL AS codigo_loja,
+	A.CD_PROD AS sku,
+	A.VLR_TABELA AS preco_normal,
+	A.VLR_OFERTA AS preco_promocional,
+	A.VLR_OFERTA, CASE WHEN A.VLR_OFERTA!=0 THEN 1 ELSE 0 END AS promocao,
+	A.DT_CAD AS data_inclusao,
+	A.DT_CAD AS data_alteracao
+
+FROM
+	EST_PROD_PRECO A,
+	TesteContador cont
+	
+WHERE  
+	A.CD_PROD = cont.contador and
+	A.CD_FILIAL = 66 
+
+OPTION (maxrecursion 0)
+
+
+=========================================================================================================================
+-- projeto de view preco
+
+WITH TesteContador(contador)
+AS
+(
+SELECT 0 AS contador
+UNION ALL
+SELECT contador + 1 AS contador FROM TesteContador
+WHERE contador < 200000
+)
+ 
+
+SELECT 
+	A.CD_FILIAL AS codigo_loja,
+	A.CD_PROD AS sku,
+	A.VLR_OFERTA AS preco_promocional, 
+	A.VLR_TABELA AS preco_normal,
+	A.VLR_OFERTA, CASE WHEN A.VLR_OFERTA!=0 THEN 1 ELSE 0 END AS promocao,
+	A.DT_CAD AS data_inclusao,
+	A.DT_CAD AS data_alteracao
+
+FROM
+	EST_PROD_PRECO A,
+	TesteContador cont
+	
+WHERE  
+	A.CD_PROD = cont.contador and
+	A.CD_FILIAL = 57 
+UNION ALL
+SELECT 
+	A.CD_FILIAL AS codigo_loja,
+	A.CD_PROD AS sku,
+	A.VLR_OFERTA AS preco_promocional, 
+	A.VLR_TABELA AS preco_normal,
+	A.VLR_OFERTA, CASE WHEN A.VLR_OFERTA!=0 THEN 1 ELSE 0 END AS promocao,
+	A.DT_CAD AS data_inclusao,
+	A.DT_CAD AS data_alteracao
+
+FROM
+	EST_PROD_PRECO A,
+	TesteContador cont
+	
+WHERE  
+	A.CD_PROD = cont.contador and
+	A.CD_FILIAL = 66 
+
+OPTION (maxrecursion 0)
+	
+	
+	
+=====================================================================================================================	
+-- VIEW estoque
+
+SELECT 
+	E.CD_PROD AS sku, 
+	E.QT_EST AS estoque_disponivel, 
+	E.DT_ULT_ATU AS data_alteracao,
+	E.DT_CAD  AS data_cadastro
+
+FROM EST_PROD_CPL E WHERE E.CD_FILIAL = 66 and 57 ;
+
+
+=====================================================================================================================
+--  
+	declare @nome varchar; SET @nome = SELECT LEFT('Maria de Paula Machado', 5)
+	
+	
+=======================================================================================================================
+	
+	
+	
