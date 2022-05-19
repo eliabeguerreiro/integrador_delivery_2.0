@@ -1,4 +1,5 @@
 <?php
+
 include_once './functions/conexao.php';
 
 
@@ -31,7 +32,7 @@ foreach($RESULTADO as $result){
         $Conexao = Conexao::getConnection();
 
         $query = $Conexao->query("
-        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_PROD WHERE CD_PROD = ".$result['CD_PROD']." and CD_TBL_DESC = 1256
+        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_PROD WHERE CD_PROD = ".$result['CD_PROD']." and CD_TBL_DESC = 1261
         ");
 
         $PRODUTO = $query->fetchAll();
@@ -77,7 +78,7 @@ foreach($RESULTADO as $result){
         $Conexao = Conexao::getConnection();
 
         $query = $Conexao->query("
-        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_ARV_MERC_FAMILIA WHERE CD_ARV_MERC_FAMILIA = ".$result['CD_ARV_MERC_FAMILIA']." and CD_TBL_DESC = 1256
+        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_ARV_MERC_FAMILIA WHERE CD_ARV_MERC_FAMILIA = ".$result['CD_ARV_MERC_FAMILIA']." and CD_TBL_DESC = 1261
         ");
 
         $FAMILIA = $query->fetchAll();
@@ -122,7 +123,7 @@ foreach($RESULTADO as $result){
         $Conexao = Conexao::getConnection();
 
         $query = $Conexao->query("
-        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_MC WHERE CD_MC = ".$result['CD_MC']." and CD_TBL_DESC = 1256
+        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_MC WHERE CD_MC = ".$result['CD_MC']." and CD_TBL_DESC = 1261
         ");
 
         $MARCA = $query->fetchAll();
@@ -169,7 +170,7 @@ foreach($RESULTADO as $result){
         $Conexao = Conexao::getConnection();
 
         $query = $Conexao->query("
-        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_PROD_FABRIC WHERE CD_FABRIC = ".$result['CD_FABRIC']." and CD_TBL_DESC = 1256
+        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_PROD_FABRIC WHERE CD_FABRIC = ".$result['CD_FABRIC']." and CD_TBL_DESC = 1261
         ");
 
         $FABRICANTE = $query->fetchAll();
@@ -213,7 +214,7 @@ foreach($RESULTADO as $result){
         $Conexao = Conexao::getConnection();
 
         $query = $Conexao->query("
-        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_ARV_MERC_CATEGORIA WHERE CD_ARV_MERC_CATEG = ".$result['CD_ARV_MERC_CATEG']." and CD_TBL_DESC = 1256
+        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_ARV_MERC_CATEGORIA WHERE CD_ARV_MERC_CATEG = ".$result['CD_ARV_MERC_CATEG']." and CD_TBL_DESC = 1261
         ");
 
         $CATEGORIA = $query->fetchAll();
@@ -260,7 +261,7 @@ foreach($RESULTADO as $result){
         $Conexao = Conexao::getConnection();
 
         $query = $Conexao->query("
-        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_ARV_MERC_LINHA WHERE CD_ARV_MERC_LINHA = ".$result['CD_ARV_MERC_LINHA']." and CD_TBL_DESC = 1256
+        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_ARV_MERC_LINHA WHERE CD_ARV_MERC_LINHA = ".$result['CD_ARV_MERC_LINHA']." and CD_TBL_DESC = 1261
         ");
 
         $LINHA = $query->fetchAll();
