@@ -21,7 +21,7 @@ SELECT
 	A.DT_CAD as dt_cadastro,
 	A.DT_REGISTRO as dt_ultima_alteracao,
 	A.VLR_TABELA AS vlr_produto,
-	CASE WHEN A.VLR_OFERTA = 0 THEN F.VLR_DELIVERY= (SELECT VLR_DELIVERY FROM EST_PROD_PRECO_DELIVERY WHERE CD_FILIAL = 10) ELSE A.VLR_OFERTA END AS vlr_promocao, 
+	CASE WHEN A.VLR_OFERTA = 0 THEN F.VLR_DELIVERY ELSE A.VLR_OFERTA END AS vlr_promocao, 
 	E.QT_EST as qtd_estoque_atual,
 	2 as qtd_estoque_minimo,
 	CASE WHEN B.STS_PROD = 0 THEN 'S' ELSE 'N' END AS ativo,
