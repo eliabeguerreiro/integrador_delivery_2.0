@@ -8,7 +8,7 @@ Os descontos das views são atualizados de acordo com as tabelas de desconto no 
         set_desc_ifood.php
         - atualizar descontos ifood de acordo com a tabela 1261;
 
-        set_desc_rappi(57, 66).php
+        set_desc_rappi.php
         - atualizar descontos ifood de acordo com a tabela 1256;
 
 

@@ -1,16 +1,16 @@
 <?php
-include_once './functions/conexao.php';
+include_once '../functions/conexao.php';
 
 try{
     $Conexao = Conexao::getConnection();
                 
     $query = $Conexao->query("
-    SELECT * FROM ARVORE_RAPPI ORDER BY CD_PROD ASC
+    SELECT * FROM ARVORE_IFOOD ORDER BY CD_PROD ASC
     OPTION(maxrecursion 0)
         ");
 
     $query2 = $Conexao->query("
-    TRUNCATE TABLE EST_PROD_PRECO_DELIVERY
+    TRUNCATE TABLE EST_PROD_PRECO_IFOOD 
         ");
     
 
@@ -30,7 +30,7 @@ foreach($RESULTADO as $result){
         $Conexao = Conexao::getConnection();
                     
         $query = $Conexao->query("
-            INSERT INTO EST_PROD_PRECO_DELIVERY (CD_PROD, CD_FILIAL, VLR_DELIVERY, TP_DESCONTO) VALUES (".$result['CD_PROD'].", 10, 0, 'NULL')");
+            INSERT INTO EST_PROD_PRECO_IFOOD (CD_PROD, CD_FILIAL, VLR_DELIVERY, TP_DESCONTO) VALUES (".$result['CD_PROD'].", 10, 0, 'NULL')");
     
         $LINHA = $query->fetchAll();
     
@@ -46,4 +46,4 @@ foreach($RESULTADO as $result){
 }
 
 
-echo("<h1>DESCONTOS ATUALIZADOS!</h1>");
+echo("<h1>DESCONTOS DO IFOOD FORAM ATUALIZADOS!</h1>");

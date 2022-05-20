@@ -1,3 +1,4 @@
+
 <?php
 
 include_once './functions/conexao.php';
@@ -301,4 +302,6 @@ foreach($RESULTADO as $result){
 
 }
 
-echo("<h1>DESCONTOS ATUALIZADOS!</h1>");
+echo("<h1>DESCONTOS IFOOD ATUALIZADOS!</h1>");
+
+   
