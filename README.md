@@ -16,7 +16,7 @@ No diretorio zerador_de_descontos se encontram os arquivos que zeram as tabelas 
 
     Arquivo: 
         zerar_tabela_prec_ifood.php
-        - atualizar descontos ifood de acordo com a tabela 1261;
+        - zerar descontos ifood;
 
         zerar_tabela_prec_rappi.php
-        - atualizar descontos ifood de acordo com a tabela 1256;
+        - zerar descontos ifood;
