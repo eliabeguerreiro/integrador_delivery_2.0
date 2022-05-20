@@ -19,4 +19,4 @@ No diretorio zerador_de_descontos se encontram os arquivos que zeram as tabelas 
         - zerar descontos ifood;
 
         zerar_tabela_prec_rappi.php
-        - zerar descontos ifood;
+        - zerar descontos rappi;
