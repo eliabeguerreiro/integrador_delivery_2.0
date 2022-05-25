@@ -1,4 +1,6 @@
-
+<script>
+    setInterval(()=>{window.scrollTo(0, document.body.scrollHeight);}, 1)
+</script>
 <?php
 
 include_once './functions/conexao.php';
@@ -56,10 +58,10 @@ foreach($RESULTADO as $result){
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_DELIVERY SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_IFOOD SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
 
             $query2 = $Conexao->query("
-            UPDATE EST_PROD_PRECO_DELIVERY SET TP_DESCONTO = 'CD_PROD' WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_IFOOD SET TP_DESCONTO = 'CD_PROD' WHERE CD_PROD = ".$result['CD_PROD']."");
            
             $UPDATE = $query->fetchAll();
             
@@ -101,9 +103,9 @@ foreach($RESULTADO as $result){
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_DELIVERY SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_IFOOD SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
-            UPDATE EST_PROD_PRECO_DELIVERY SET TP_DESCONTO = 'CD_ARV_MERC_FAMILIA' WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_IFOOD SET TP_DESCONTO = 'CD_ARV_MERC_FAMILIA' WHERE CD_PROD = ".$result['CD_PROD']."");
     
             $UPDATE1 = $query->fetchAll();
             $UPDATE2 = $query2->fetchAll();
@@ -147,9 +149,9 @@ foreach($RESULTADO as $result){
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_DELIVERY SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_IFOOD SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
-            UPDATE EST_PROD_PRECO_DELIVERY SET TP_DESCONTO = 'CD_MC' WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_IFOOD SET TP_DESCONTO = 'CD_MC' WHERE CD_PROD = ".$result['CD_PROD']."");
     
             $UPDATE1 = $query->fetchAll();
             $UPDATE2 = $query2->fetchAll();
@@ -193,9 +195,9 @@ foreach($RESULTADO as $result){
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_DELIVERY SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_IFOOD SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
-            UPDATE EST_PROD_PRECO_DELIVERY SET TP_DESCONTO = 'CD_FABRIC' WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_IFOOD SET TP_DESCONTO = 'CD_FABRIC' WHERE CD_PROD = ".$result['CD_PROD']."");
     
             $UPDATE1 = $query->fetchAll();
             $UPDATE2 = $query2->fetchAll();
@@ -236,9 +238,9 @@ foreach($RESULTADO as $result){
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_DELIVERY SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_IFOOD SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
-            UPDATE EST_PROD_PRECO_DELIVERY SET TP_DESCONTO = 'CD_ARV_MERC_CATEG' WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_IFOOD SET TP_DESCONTO = 'CD_ARV_MERC_CATEG' WHERE CD_PROD = ".$result['CD_PROD']."");
     
             $UPDATE1 = $query->fetchAll();
             $UPDATE2 = $query2->fetchAll();
@@ -283,9 +285,9 @@ foreach($RESULTADO as $result){
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_DELIVERY SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_IFOOD SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
-            UPDATE EST_PROD_PRECO_DELIVERY SET TP_DESCONTO = 'CD_ARV_MERC_LINHA' WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_IFOOD SET TP_DESCONTO = 'CD_ARV_MERC_LINHA' WHERE CD_PROD = ".$result['CD_PROD']."");
     
             $UPDATE1 = $query->fetchAll();
             $UPDATE2 = $query2->fetchAll();
@@ -301,7 +303,4 @@ foreach($RESULTADO as $result){
     
 
 }
-
 echo("<h1>DESCONTOS IFOOD ATUALIZADOS!</h1>");
-
-   

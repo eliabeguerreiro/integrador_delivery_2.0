@@ -49,7 +49,7 @@ session_start();
                     </div>
                 </div>
                 
-                <div onclick="location.href='set_desc_rappi'" class="card-btn">
+                <div onclick="location.href='set_desc_rappi.php'" class="card-btn">
                     <div class="card-icon">
                         <ion-icon name="cash-outline"></ion-icon>
                     </div>

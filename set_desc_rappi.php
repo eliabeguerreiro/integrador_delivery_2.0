@@ -1,9 +1,13 @@
 <?php
-
+include_once './functions/conexao.php';
 ?>
 
 <a href="?loja=57">Atualizar RAPPI R57</a></p>
 <a href="?loja=66">Atualizar RAPPI R66</a></p>
+
+<script>
+    setInterval(()=>{window.scrollTo(0, document.body.scrollHeight);}, 1)
+</script>
 
 <?php
 
@@ -13,7 +17,7 @@
     if($_GET){
         if($_GET['loja'] == 57){
 
-        include_once './functions/conexao.php';
+        
         echo("<h1> LOJA 57: </h1>");
 
 
