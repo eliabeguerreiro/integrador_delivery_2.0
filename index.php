@@ -31,12 +31,13 @@ session_start();
                     </div>
                 </div>
 
-                <div onclick="location.href='./zerador_de_descontos/zerar_tabela_preco_rappi.php'" class="card-btn">
+
+                <div onclick="location.href='./zerador_de_descontos/zerar_tabela_preco_appfarma.php'" class="card-btn">
                     <div class="card-icon">
                         <ion-icon name="cash-outline"></ion-icon>
                     </div>
                     <div class="card-nome">
-                        <p>Zerar descontos Rappi</p>
+                        <p>Zerar descontos AppFarma</p>
                     </div>
                 </div>
 
@@ -58,6 +59,15 @@ session_start();
                     </div>
                 </div>
 
+                <div onclick="location.href='set_desc_appfarma.php'" class="card-btn">
+                    <div class="card-icon">
+                        <ion-icon name="cash-outline"></ion-icon>
+                    </div>
+                    <div class="card-nome">
+                        <p>Atualizar AppFarma</p>
+                    </div>
+                </div>
+
             </div>
         </section>
 	</div>
@@ -68,8 +78,7 @@ session_start();
         <section>
             <div>
                 <div class="colunas" style="padding-top: 30px; padding-bottom: 30px;">
-                    <p style="color: #fff">RedePharma © Desenvolvido por: <a style="text-decoration: none; color: #ff7d12;" href="https://github.com/eliabeguerreiro">Eliabe Paz</a>
-                     </p>
+                    <p style="color: #fff">RedePharma ©</p>
                 </div>
             </div>
         </section>

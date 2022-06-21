@@ -1,12 +1,17 @@
+<script>
+    setInterval(()=>{window.scrollTo(0, document.body.scrollHeight);}, 1)
+</script>
 <?php
+
 include_once './functions/conexao.php';
-echo("<h1> LOJA 66: </h1>");
+
+
 
 try{
     $Conexao = Conexao::getConnection();
                 
     $query = $Conexao->query("
-    SELECT * FROM ARVORE_RAPPI_66 ORDER BY CD_PROD ASC
+    SELECT * FROM ARVORE_APPFARMA ORDER BY CD_PROD ASC
     OPTION(maxrecursion 0)
         ");
 
@@ -30,7 +35,7 @@ foreach($RESULTADO as $result){
         $Conexao = Conexao::getConnection();
 
         $query = $Conexao->query("
-        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_PROD WHERE CD_PROD = ".$result['CD_PROD']." and CD_TBL_DESC = 1256
+        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_PROD WHERE CD_PROD = ".$result['CD_PROD']." and CD_TBL_DESC = 1315
         ");
 
         $PRODUTO = $query->fetchAll();
@@ -53,10 +58,10 @@ foreach($RESULTADO as $result){
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_RAPPI66 SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']." ");
+            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
 
             $query2 = $Conexao->query("
-            UPDATE EST_PROD_PRECO_RAPPI66 SET TP_DESCONTO = 'CD_PROD' WHERE CD_PROD = ".$result['CD_PROD']." ");
+            UPDATE EST_PROD_PRECO_APPFARMA SET TP_DESCONTO = 'CD_PROD' WHERE CD_PROD = ".$result['CD_PROD']."");
            
             $UPDATE = $query->fetchAll();
             
@@ -76,7 +81,7 @@ foreach($RESULTADO as $result){
         $Conexao = Conexao::getConnection();
 
         $query = $Conexao->query("
-        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_ARV_MERC_FAMILIA WHERE CD_ARV_MERC_FAMILIA = ".$result['CD_ARV_MERC_FAMILIA']." and CD_TBL_DESC = 1256
+        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_ARV_MERC_FAMILIA WHERE CD_ARV_MERC_FAMILIA = ".$result['CD_ARV_MERC_FAMILIA']." and CD_TBL_DESC = 1315
         ");
 
         $FAMILIA = $query->fetchAll();
@@ -98,9 +103,9 @@ foreach($RESULTADO as $result){
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_RAPPI66 SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']." ");
+            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
-            UPDATE EST_PROD_PRECO_RAPPI66 SET TP_DESCONTO = 'CD_ARV_MERC_FAMILIA' WHERE CD_PROD = ".$result['CD_PROD']." ");
+            UPDATE EST_PROD_PRECO_APPFARMA SET TP_DESCONTO = 'CD_ARV_MERC_FAMILIA' WHERE CD_PROD = ".$result['CD_PROD']."");
     
             $UPDATE1 = $query->fetchAll();
             $UPDATE2 = $query2->fetchAll();
@@ -121,7 +126,7 @@ foreach($RESULTADO as $result){
         $Conexao = Conexao::getConnection();
 
         $query = $Conexao->query("
-        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_MC WHERE CD_MC = ".$result['CD_MC']." and CD_TBL_DESC = 1256
+        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_MC WHERE CD_MC = ".$result['CD_MC']." and CD_TBL_DESC = 1315
         ");
 
         $MARCA = $query->fetchAll();
@@ -144,9 +149,9 @@ foreach($RESULTADO as $result){
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_RAPPI66 SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']." ");
+            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
-            UPDATE EST_PROD_PRECO_RAPPI66 SET TP_DESCONTO = 'CD_MC' WHERE CD_PROD = ".$result['CD_PROD']." ");
+            UPDATE EST_PROD_PRECO_APPFARMA SET TP_DESCONTO = 'CD_MC' WHERE CD_PROD = ".$result['CD_PROD']."");
     
             $UPDATE1 = $query->fetchAll();
             $UPDATE2 = $query2->fetchAll();
@@ -168,7 +173,7 @@ foreach($RESULTADO as $result){
         $Conexao = Conexao::getConnection();
 
         $query = $Conexao->query("
-        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_PROD_FABRIC WHERE CD_FABRIC = ".$result['CD_FABRIC']." and CD_TBL_DESC = 1256
+        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_PROD_FABRIC WHERE CD_FABRIC = ".$result['CD_FABRIC']." and CD_TBL_DESC = 1315
         ");
 
         $FABRICANTE = $query->fetchAll();
@@ -190,9 +195,9 @@ foreach($RESULTADO as $result){
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_RAPPI66 SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']." ");
+            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
-            UPDATE EST_PROD_PRECO_RAPPI66 SET TP_DESCONTO = 'CD_FABRIC' WHERE CD_PROD = ".$result['CD_PROD']." ");
+            UPDATE EST_PROD_PRECO_APPFARMA SET TP_DESCONTO = 'CD_FABRIC' WHERE CD_PROD = ".$result['CD_PROD']."");
     
             $UPDATE1 = $query->fetchAll();
             $UPDATE2 = $query2->fetchAll();
@@ -212,7 +217,7 @@ foreach($RESULTADO as $result){
         $Conexao = Conexao::getConnection();
 
         $query = $Conexao->query("
-        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_ARV_MERC_CATEGORIA WHERE CD_ARV_MERC_CATEG = ".$result['CD_ARV_MERC_CATEG']." and CD_TBL_DESC = 1256
+        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_ARV_MERC_CATEGORIA WHERE CD_ARV_MERC_CATEG = ".$result['CD_ARV_MERC_CATEG']." and CD_TBL_DESC = 1315
         ");
 
         $CATEGORIA = $query->fetchAll();
@@ -233,9 +238,9 @@ foreach($RESULTADO as $result){
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_RAPPI66 SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']." ");
+            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
-            UPDATE EST_PROD_PRECO_RAPPI66 SET TP_DESCONTO = 'CD_ARV_MERC_CATEG' WHERE CD_PROD = ".$result['CD_PROD']." ");
+            UPDATE EST_PROD_PRECO_APPFARMA SET TP_DESCONTO = 'CD_ARV_MERC_CATEG' WHERE CD_PROD = ".$result['CD_PROD']."");
     
             $UPDATE1 = $query->fetchAll();
             $UPDATE2 = $query2->fetchAll();
@@ -259,7 +264,7 @@ foreach($RESULTADO as $result){
         $Conexao = Conexao::getConnection();
 
         $query = $Conexao->query("
-        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_ARV_MERC_LINHA WHERE CD_ARV_MERC_LINHA = ".$result['CD_ARV_MERC_LINHA']." and CD_TBL_DESC = 1256
+        SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_ARV_MERC_LINHA WHERE CD_ARV_MERC_LINHA = ".$result['CD_ARV_MERC_LINHA']." and CD_TBL_DESC = 1315
         ");
 
         $LINHA = $query->fetchAll();
@@ -280,9 +285,9 @@ foreach($RESULTADO as $result){
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_RAPPI66 SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']." ");
+            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
-            UPDATE EST_PROD_PRECO_RAPPI66 SET TP_DESCONTO = 'CD_ARV_MERC_LINHA' WHERE CD_PROD = ".$result['CD_PROD']." ");
+            UPDATE EST_PROD_PRECO_APPFARMA SET TP_DESCONTO = 'CD_ARV_MERC_LINHA' WHERE CD_PROD = ".$result['CD_PROD']."");
     
             $UPDATE1 = $query->fetchAll();
             $UPDATE2 = $query2->fetchAll();
@@ -298,5 +303,4 @@ foreach($RESULTADO as $result){
     
 
 }
-
-echo("<h1>DESCONTOS DA 66 ATUALIZADOS!</h1>");
+echo("<h1>DESCONTOS APPFARMA ATUALIZADOS!</h1>");

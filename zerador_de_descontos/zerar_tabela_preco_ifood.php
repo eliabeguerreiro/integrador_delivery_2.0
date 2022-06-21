@@ -1,3 +1,6 @@
+<script>
+    setInterval(()=>{window.scrollTo(0, document.body.scrollHeight);}, 1)
+</script>
 <?php
 include_once '../functions/conexao.php';
 
@@ -30,7 +33,7 @@ foreach($RESULTADO as $result){
         $Conexao = Conexao::getConnection();
                     
         $query = $Conexao->query("
-            INSERT INTO EST_PROD_PRECO_IFOOD (CD_PROD, CD_FILIAL, VLR_DELIVERY, TP_DESCONTO) VALUES (".$result['CD_PROD'].", 10, 0, 'NULL')");
+            INSERT INTO EST_PROD_PRECO_IFOOD (CD_PROD, VLR_DELIVERY, TP_DESCONTO) VALUES (".$result['CD_PROD'].", 0, 'NULL')");
     
         $LINHA = $query->fetchAll();
     

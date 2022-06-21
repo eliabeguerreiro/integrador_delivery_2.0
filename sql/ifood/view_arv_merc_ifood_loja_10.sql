@@ -28,5 +28,5 @@ FROM
 WHERE
 
 	A.CD_PROD = cont.contador 
-	and	A.CD_FILIAL = 10 
+	and	A.CD_FILIAL = 30
 
