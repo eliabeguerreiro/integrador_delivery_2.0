@@ -20,7 +20,7 @@ AND pf.sts_filial = 0
 
 -- AND replace(replace(replace(pf.cgc, '-', ''), '/', ''), '.', '') = :cnpj
 WHERE e.qt_est > 0
-and e.cd_filial in (8,10,12,30,35,55)
+and e.cd_filial in (2,10,11,30,35,55)
 /*and e.cd_filial in (2,6,8,10,11,12,15,16,20,21,22,23,24,25,29,30,35,37,47,48,49,50,51,55,57,61,
 63,64,66,67,68,69,70)
 */

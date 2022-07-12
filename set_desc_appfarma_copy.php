@@ -11,7 +11,7 @@ try{
     $Conexao = Conexao::getConnection();
                 
     $query = $Conexao->query("
-    SELECT * FROM ARVORE_APPFARMA ORDER BY CD_PROD ASC
+    SELECT * FROM ARVORE_APPFARMA WHERE CD_PROD <=10 ORDER BY CD_PROD ASC
     OPTION(maxrecursion 0)
         ");
 
@@ -26,13 +26,14 @@ try{
 foreach($RESULTADO as $result){
     $valor_tabela = ($result['VLR_TABELA']);
     
-    echo("Valor tabelado: ");
+    echo("<br> Valor tabelado: ");
     echo$valor_tabela;
     
     echo("<br> Codigo do produto: ");
     echo$result['CD_PROD'];
     echo("<br>");
-    
+    echo("<br>");
+
     //PRODUTO
     try{
         $Conexao = Conexao::getConnection();
@@ -47,25 +48,31 @@ foreach($RESULTADO as $result){
         echo $e->getMessage();
     }
 
-    
 
     if($PRODUTO){
-        echo("Desconto produto<br>");
+
+        $dividendo = (round($PRODUTO[0][0], 1));
+        $divisor = (round($valor_tabela, 1));
+
+        echo$divisor;
         echo("<br>");
 
-        
-        $porcentagem = (round($PRODUTO[0][0], 1));
-        $valor_original = (round($valor_tabela, 1));
-        $valor_desconto = ($valor_original / 100 * $porcentagem);
-        $valor_com_desconto = ($valor_tabela - $valor_desconto);
-        echo("Valor com desconto: $valor_com_desconto");
-        echo("<br>");
+        try{
+            $resultado = ($divisor / $dividendo);
+            $novo_preco = ($valor_tabela-$resultado);
+        } catch (DivisionByZeroError $e) {
+            $novo_preco = $valor_tabela;
+            echo "got by zero";
+        } catch (ErrorException $e) {
+            $novo_preco = $valor_tabela;
+            echo "got exception by zero";
+        }
     
         try{
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $valor_com_desconto WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
 
             $query2 = $Conexao->query("
             UPDATE EST_PROD_PRECO_APPFARMA SET TP_DESCONTO = 'CD_PROD' WHERE CD_PROD = ".$result['CD_PROD']."");
@@ -98,22 +105,29 @@ foreach($RESULTADO as $result){
     }
     
     if($FAMILIA){
-        echo("Desconto familia<br>");
-        echo("<br>");
-
         
-        $porcentagem = (round($FAMILIA[0][0], 1));
-        $valor_original = (round($valor_tabela, 1));
-        $valor_desconto = ($valor_original / 100 * $porcentagem);
-        $valor_com_desconto = ($valor_tabela - $valor_desconto);
-        echo("Valor com desconto: $valor_com_desconto");
+        $dividendo = (round($FAMILIA[0][0], 1));
+        $divisor = (round($valor_tabela, 1));
+        echo$divisor;
         echo("<br>");
+    
+    
+        try{
+            $resultado = ($divisor / $dividendo);
+            $novo_preco = ($valor_tabela-$resultado);
+        } catch (DivisionByZeroError $e) {
+            $novo_preco = $valor_tabela;
+            echo "got by zero";
+        } catch (ErrorException $e) {
+            $novo_preco = $valor_tabela;
+            echo "got exception by zero";
+        }
     
         try{
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $valor_com_desconto WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
             UPDATE EST_PROD_PRECO_APPFARMA SET TP_DESCONTO = 'CD_ARV_MERC_FAMILIA' WHERE CD_PROD = ".$result['CD_PROD']."");
     
@@ -147,22 +161,28 @@ foreach($RESULTADO as $result){
 
 
     if($MARCA){
-        echo("Desconto marca<br>");
-        echo("<br>");
 
-        
-        $porcentagem = (round($MARCA[0][0], 1));
-        $valor_original = (round($valor_tabela, 1));
-        $valor_desconto = ($valor_original / 100 * $porcentagem);
-        $valor_com_desconto = ($valor_tabela - $valor_desconto);
-        echo("Valor com desconto: $valor_com_desconto");
+        $dividendo = (round($MARCA[0][0], 1));
+        $divisor = (round($valor_tabela, 1));
+        echo$divisor;
         echo("<br>");
+    
+        try{
+            $resultado = ($divisor / $dividendo);
+            $novo_preco = ($valor_tabela-$resultado);
+        } catch (DivisionByZeroError $e) {
+            $novo_preco = $valor_tabela;
+            echo "got by zero";
+        } catch (ErrorException $e) {
+            $novo_preco = $valor_tabela;
+            echo "got exception by zero";
+        }
     
         try{
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $valor_com_desconto WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
             UPDATE EST_PROD_PRECO_APPFARMA SET TP_DESCONTO = 'CD_MC' WHERE CD_PROD = ".$result['CD_PROD']."");
     
@@ -196,22 +216,29 @@ foreach($RESULTADO as $result){
     }
 
     if($FABRICANTE){
-        echo("Desconto fabricante<br>");
-        echo("<br>");
 
-        
-        $porcentagem = (round($FABRICANTE[0][0], 1));
-        $valor_original = (round($valor_tabela, 1));
-        $valor_desconto = ($valor_original / 100 * $porcentagem);
-        $valor_com_desconto = ($valor_tabela - $valor_desconto);
-        echo("Valor com desconto: $valor_com_desconto");
+        $dividendo = (round($FABRICANTE[0][0], 1));
+        $divisor = (round($valor_tabela, 1));
+        echo$divisor;
         echo("<br>");
+    
+    
+        try{
+            $resultado = ($divisor / $dividendo);
+            $novo_preco = ($valor_tabela-$resultado);
+        } catch (DivisionByZeroError $e) {
+            $novo_preco = $valor_tabela;
+            echo "got by zero";
+        } catch (ErrorException $e) {
+            $novo_preco = $valor_tabela;
+            echo "got exception by zero";
+        }
     
         try{
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $valor_com_desconto WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
             UPDATE EST_PROD_PRECO_APPFARMA SET TP_DESCONTO = 'CD_FABRIC' WHERE CD_PROD = ".$result['CD_PROD']."");
     
@@ -243,22 +270,28 @@ foreach($RESULTADO as $result){
     }
 
     if($CATEGORIA){
-        echo("Desconto categoria<br>");
-        
-
-        
-        $porcentagem = (round($CATEGORIA[0][0], 1));
-        $valor_original = (round($valor_tabela, 1));
-        $valor_desconto = ($valor_original / 100 * $porcentagem);
-        $valor_com_desconto = ($valor_tabela - $valor_desconto);
-        echo("Valor com desconto: $valor_com_desconto");
+        $dividendo = (round($CATEGORIA[0][0], 1));
+        $divisor = (round($valor_tabela, 1));
+        echo$divisor;
         echo("<br>");
+    
+    
+        try{
+            $resultado = ($divisor / $dividendo);
+            $novo_preco = ($valor_tabela-$resultado);
+        } catch (DivisionByZeroError $e) {
+            $novo_preco = $valor_tabela;
+            echo "got by zero";
+        } catch (ErrorException $e) {
+            $novo_preco = $valor_tabela;
+            echo "got exception by zero";
+        }
     
         try{
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $valor_com_desconto WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
             UPDATE EST_PROD_PRECO_APPFARMA SET TP_DESCONTO = 'CD_ARV_MERC_CATEG' WHERE CD_PROD = ".$result['CD_PROD']."");
     
@@ -294,24 +327,28 @@ foreach($RESULTADO as $result){
     }
 
     if($LINHA){
-        echo("Desconto linha<br>");
-        
-
-        
-        $porcentagem = ($LINHA[0][0]);
-        $valor_original = (round($valor_tabela, 1));
-        $valor_desconto = ($valor_original / 100 * $porcentagem);
-        $valor_com_desconto = ($valor_tabela - $valor_desconto);
-        echo("Valor com desconto: $valor_com_desconto");
+        $dividendo = (round($LINHA[0][0], 1));
+        $divisor = (round($valor_tabela, 1));
+        echo$divisor;
         echo("<br>");
-
-        
+    
+    
+        try{
+            $resultado = ($divisor / $dividendo);
+            $novo_preco = ($valor_tabela-$resultado);
+        } catch (DivisionByZeroError $e) {
+            $novo_preco = $valor_tabela;
+            echo "got by zero";
+        } catch (ErrorException $e) {
+            $novo_preco = $valor_tabela;
+            echo "got exception by zero";
+        }
     
         try{
             $Conexao = Conexao::getConnection();
     
             $query = $Conexao->query("
-            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $valor_com_desconto WHERE CD_PROD = ".$result['CD_PROD']."");
+            UPDATE EST_PROD_PRECO_APPFARMA SET VLR_DELIVERY = $novo_preco WHERE CD_PROD = ".$result['CD_PROD']."");
             $query2 = $Conexao->query("
             UPDATE EST_PROD_PRECO_APPFARMA SET TP_DESCONTO = 'CD_ARV_MERC_LINHA' WHERE CD_PROD = ".$result['CD_PROD']."");
     
@@ -323,8 +360,9 @@ foreach($RESULTADO as $result){
             echo("<br>");
         }
 
-        }
         continue;
+    }
+
     
 
 }

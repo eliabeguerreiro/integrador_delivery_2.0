@@ -46,15 +46,17 @@ WHERE
 ------ eixe --------
 
 
-
 ALTER VIEW osuper_estoque AS
 SELECT 
-	E.CD_PROD AS sku, 
-	E.QT_EST AS estoque_disponivel, 
-	E.DT_ULT_ATU AS data_alteracao,
-	E.DT_CAD  AS data_cadastro
+    E.CD_FILIAL AS codigo_loja,
+    E.CD_PROD AS sku, 
+    E.QT_EST AS estoque_disponivel, 
+    E.DT_ULT_ATU AS data_alteracao,
+    E.DT_CAD  AS data_inclusao
 
-FROM EST_PROD_CPL E WHERE E.CD_FILIAL in (57, 66);
+FROM EST_PROD_CPL E 
+
+WHERE E.CD_FILIAL in (57, 66);
 
 
 

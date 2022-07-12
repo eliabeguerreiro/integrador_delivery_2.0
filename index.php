@@ -41,6 +41,15 @@ session_start();
                     </div>
                 </div>
 
+                <div onclick="location.href='./zerador_de_descontos/zerar_tabela_preco_rappi.php'" class="card-btn">
+                    <div class="card-icon">
+                        <ion-icon name="cash-outline"></ion-icon>
+                    </div>
+                    <div class="card-nome">
+                        <p>Zerar descontos Rappi</p>
+                    </div>
+                </div>
+
                 <div onclick="location.href='set_desc_ifood.php'" class="card-btn">
                     <div class="card-icon">
                         <ion-icon name="cash-outline"></ion-icon>

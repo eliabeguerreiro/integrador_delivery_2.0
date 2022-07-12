@@ -31,6 +31,7 @@ include_once './functions/conexao.php';
         foreach($RESULTADO as $result){
             $valor_tabela = ($result['VLR_TABELA']);
         
+
             echo$result['CD_PROD'];
             echo("<br>");
 
@@ -40,7 +41,7 @@ include_once './functions/conexao.php';
                 $Conexao = Conexao::getConnection();
 
                 $query = $Conexao->query("
-                SELECT PERC_DESC FROM EST_PROD_TBL_DESC_EST_PROD WHERE CD_PROD = ".$result['CD_PROD']." and CD_TBL_DESC = 1256
+                SELECT PERC_DESC FROM EST_PROD_TBL_DESC WHERE CD_PROD = ".$result['CD_PROD']." and CD_TBL_DESC = 1256
                 ");
 
                 $PRODUTO = $query->fetchAll();
