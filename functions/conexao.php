@@ -3,7 +3,7 @@
 
 define('DB_HOST'        , "10.7.0.4");
 define('DB_USER'        , "redeph.suporte");
-define('DB_PASSWORD'    , "R5@Od$4=6!3");
+define('DB_PASSWORD'    , "");
 define('DB_NAME'        , "RedePharmaProducao");
 define('DB_DRIVER'      , "sqlsrv");
 
